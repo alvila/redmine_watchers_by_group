@@ -1,0 +1,28 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<p>
+<%= l(:watchers_select_multiple) %>
+<%
+roles=""
+@groups = Group.find(:all, :order => 'lastname').each do |item|
+key=item[:lastname]
+value=item.users
+values=Array.new
+value.each do |user|
+values+=[user[:id]]
+end
+roles+="<option value=\"#{values.join(',')}\">#{key}</option>"
+end %>
+<%= select_tag(:watcher_multiple_group, roles)
+%>
+  <input type="submit" value="Select" onclick="return checkSome('issue[watcher_user_ids][]')" /> |
+  <input type="submit" value="Unselect" onclick="return uncheckSome('issue[watcher_user_ids][]')" /> |
+  <input type="submit" value="Select All" onclick="return checkAll('issue[watcher_user_ids][]')" /> |
+  <input type="submit" value="Unselect All" onclick="return uncheckAll('issue[watcher_user_ids][]')" />
+</p>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
+<% end %>
