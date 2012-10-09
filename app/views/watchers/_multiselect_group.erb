@@ -15,8 +15,7 @@ values+=[user[:id]]
 end
 roles+="<option value=\"#{values.join(',')}\">#{key}</option>"
 end %>
-<%= select_tag(:watcher_multiple_group, roles)
-%>
+<%= select_tag(:watcher_multiple_group, roles.html_safe) %>
   <input type="submit" value="Select" onclick="return checkSome('issue[watcher_user_ids][]')" /> |
   <input type="submit" value="Unselect" onclick="return uncheckSome('issue[watcher_user_ids][]')" /> |
   <input type="submit" value="Select All" onclick="return checkAll('issue[watcher_user_ids][]')" /> |
