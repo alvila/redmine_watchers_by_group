@@ -2,6 +2,7 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
+<% if controller.action_name  == 'new' %>
 <p>
 <%= l(:watchers_select_multiple) %>
 <%
@@ -24,4 +25,5 @@ end %>
 
 <% content_for :header_tags do %>
   <%= javascript_include_tag "watchers_multisel.js", :plugin => 'redmine_watchers_by_group' %>
+<% end %>
 <% end %>
